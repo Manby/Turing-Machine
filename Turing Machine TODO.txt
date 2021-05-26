@@ -1,0 +1,35 @@
+=== TODO ===
+- Read animation
+- Function indicator/table
+- Stop auto-run?
+
+- Scroll when on frame & scrolling bug
+- Strip strings before validation?
+- Thread pygame?
+- Prettify
+- Prevent extreme inputs (large dimensions)
+
+> Remove run line
+> Comment
+
+===== INSTRUCTIONS =====
+
+When machine is running:
+SPACE:    Do one full step
+T:        Do one part of a step
+R:        Run machine automatically
+P:        Pause animation
+
+When machine is done:
+Left:     Move tape right
+Right:    Move tape left
+Up:       Move Head Up
+Down:     Move Head Down
+
+At any time:
+Tab:      Toggle detail
+Equals:   Zoom in
+Minus:    Zoom Out
+
+===== TOOLS =====
+, bg='[a-z]+'

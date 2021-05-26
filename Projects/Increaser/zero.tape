@@ -1,0 +1,1 @@
+{"tape": {"-1": "0"}, "startPos": "0", "blankChar": ""}
