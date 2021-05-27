@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 import json
-import TuringMachine
+import TuringSim
 import re
 
 class Application(ttk.Notebook):
@@ -608,7 +608,7 @@ class Application(ttk.Notebook):
 		speed = int(w['eSpeed'].get())
 		FPS = int(w['eFPS'].get())
 
-		TuringMachine.run(instructions, acceptStates, startState, tape, startPos, blankChar, (width, height), cellSize, speed, FPS)
+		TuringSim.run(instructions, acceptStates, startState, tape, startPos, blankChar, (width, height), cellSize, speed, FPS)
 
 
 def tagUp(tag, *args):

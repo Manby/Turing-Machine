@@ -43,7 +43,7 @@ class Application(ttk.Notebook):
 	def machineTabWidgets(self, tab):
 		w = self.widgets
 
-		dTop = tk.Frame(tab, bg='brown')
+		dTop = tk.Frame(tab)
 		dTop.pack(side='top', expand=True, fill='both')
 
 		dInstruction = tk.Frame(dTop, borderwidth=3, relief='sunken')
@@ -52,7 +52,7 @@ class Application(ttk.Notebook):
 		dInstructionScrollFrame = tk.Frame(dInstruction)
 		dInstructionScrollFrame.pack(side='right', expand=True, fill='both')
 
-		dLabels = tk.Frame(dInstructionScrollFrame, bg='green')
+		dLabels = tk.Frame(dInstructionScrollFrame)
 		dLabels.pack(side='top', fill='x')
 
 		lState = tk.Label(dLabels, text='State')
@@ -66,56 +66,56 @@ class Application(ttk.Notebook):
 		lNext = tk.Label(dLabels, text='Next State')
 		lNext.pack(side='left')
 
-		w['cInstruction'] = cInstruction = tk.Canvas(dInstructionScrollFrame, bg='pink')
+		w['cInstruction'] = cInstruction = tk.Canvas(dInstructionScrollFrame, height=100)
 
 		scrollbar = tk.Scrollbar(dInstruction, orient='vertical', command=cInstruction.yview)
 		scrollbar.pack(side='left', fill='y')
 		cInstruction.configure(yscrollcommand=scrollbar.set)
 		cInstruction.pack(side='top', expand=True, fill='both')
 
-		w['cdInstruction'] = cdInstruction = tk.Frame(cInstruction, bg='indigo')
+		w['cdInstruction'] = cdInstruction = tk.Frame(cInstruction)
 
 		cInstruction.create_window((0, 0), window=cdInstruction, anchor='nw')
-		tagUp('instructionScrollable', cdInstruction)
+		tagUp('instructionScrollable', cdInstruction, cInstruction)
 		tab.bind_class('instructionScrollable', '<MouseWheel>', lambda event, canvas=cInstruction: self.mouseWheel(event, canvas))
 
 		cdInstruction.update_idletasks()
 
 		cInstruction.config(scrollregion=cInstruction.bbox("all"))
 
-		dRight = tk.Frame(dTop, bg='purple')
+		dRight = tk.Frame(dTop)
 		dRight.pack(side='left', fill='y')
 
 		dAccept = tk.Frame(dRight, borderwidth=3, relief='sunken')
-		dAccept.pack(side='top')
+		dAccept.pack(side='bottom')
 
 		dAcceptScrollFrame = tk.Frame(dAccept)
 		dAcceptScrollFrame.pack(side='right', anchor='nw', expand=True, fill='both')
 
-		dLabel = tk.Frame(dAcceptScrollFrame, bg='green')
+		dLabel = tk.Frame(dAcceptScrollFrame)
 		dLabel.pack(side='top', fill='x')
 
 		lState = tk.Label(dLabel, text='Accept States')
 		lState.pack(side='left')
 
-		w['cAccept'] = cAccept = tk.Canvas(dAcceptScrollFrame, bg='red', width=150, height=140)
+		w['cAccept'] = cAccept = tk.Canvas(dAcceptScrollFrame, width=105, height=140)
 
 		scrollbar = tk.Scrollbar(dAccept, orient='vertical', command=cAccept.yview)
 		scrollbar.pack(side='left', fill='y')
 		cAccept.configure(yscrollcommand=scrollbar.set)
 		cAccept.pack(side='top', expand=True, fill='both')
 
-		w['cdAccept'] = cdAccept = tk.Frame(cAccept, bg='indigo')
+		w['cdAccept'] = cdAccept = tk.Frame(cAccept)
 
 		cAccept.create_window((0, 0), window=cdAccept, anchor='nw')
-		tagUp('acceptScrollable', cdAccept)
+		tagUp('acceptScrollable', cdAccept, cAccept)
 		tab.bind_class('acceptScrollable', '<MouseWheel>', lambda event, canvas=cAccept: self.mouseWheel(event, canvas))
 
 		cdAccept.update_idletasks()
 
 		cAccept.config(scrollregion=cAccept.bbox("all"))
 
-		dFile = tk.Frame(dTop, bg='gold')
+		dFile = tk.Frame(dRight)
 		dFile.pack(side='right', fill='y')
 
 		bImport = tk.Button(dFile, text='Import Instructions', command=self.importMachine)
@@ -123,7 +123,7 @@ class Application(ttk.Notebook):
 		bExport = tk.Button(dFile, text='Export Instructions', command=self.exportMachine)
 		bExport.pack(side='top', fill='x')
 
-		dInstructionButton = tk.Frame(dInstructionScrollFrame, bg='orange')
+		dInstructionButton = tk.Frame(dInstructionScrollFrame)
 		dInstructionButton.pack(side='top', fill='both')
 
 		bAddInstruction = tk.Button(dInstructionButton, text='Add', command=self.addInstruction)
@@ -131,7 +131,7 @@ class Application(ttk.Notebook):
 		bResetInstructions = tk.Button(dInstructionButton, text='Reset', fg='red', command=lambda: self.resetInstructions(True))
 		bResetInstructions.pack(side='left')
 
-		dAcceptButton = tk.Frame(dAcceptScrollFrame, bg='orange')
+		dAcceptButton = tk.Frame(dAcceptScrollFrame)
 		dAcceptButton.pack(side='top', fill='both')
 
 		bAddAccept = tk.Button(dAcceptButton, text='Add', command=self.addAccept)
@@ -139,10 +139,10 @@ class Application(ttk.Notebook):
 		bResetAccepts = tk.Button(dAcceptButton, text='Reset', fg='red', command=lambda: self.resetAccepts(True))
 		bResetAccepts.pack(side='left')
 
-		dInput = tk.Frame(tab, bg='crimson')
+		dInput = tk.Frame(tab)
 		dInput.pack(side='top', fill='x')
 
-		dStart = tk.Frame(dInput, bg='teal')
+		dStart = tk.Frame(dInput)
 		dStart.pack(side='left')
 
 		lStart = tk.Label(dStart, text='Start State:')
@@ -153,44 +153,47 @@ class Application(ttk.Notebook):
 	def tapeTabWidgets(self, tab):
 		w = self.widgets
 
-		dTop = tk.Frame(tab, bg='violet')
+		dTop = tk.Frame(tab)
 		dTop.pack(side='top', expand=True, fill='both')
 
-		dTape = tk.Frame(dTop, bg='blue')
-		dTape.pack(side='left', expand=True)
+		dTape = tk.Frame(dTop)
+		dTape.pack(side='bottom', expand=True)
 
 		lHead = tk.Label(dTape, text='▼')
 		lHead.pack(side='top')
 
-		dFile = tk.Frame(dTop, bg='gold')
-		dFile.pack(side='right', fill='y')
+		dFile = tk.Frame(dTop)
+		dFile.pack(side='top', fill='x')
 
-		bImport = tk.Button(dFile, text='Import Tape', command=self.importTape)
+		dFileButtons = tk.Frame(dFile)
+		dFileButtons.pack(side='right')
+
+		bImport = tk.Button(dFileButtons, text='Import Tape', command=self.importTape)
 		bImport.pack(side='top')
-		bExport = tk.Button(dFile, text='Export Tape', command=self.exportTape)
+		bExport = tk.Button(dFileButtons, text='Export Tape', command=self.exportTape)
 		bExport.pack(side='top', fill='x')
 
-		w['dCells'] = dCells = tk.Frame(dTape, bg='green')
+		w['dCells'] = dCells = tk.Frame(dTape)
 		dCells.pack(side='top', expand=True, fill='x')
 
-		dShift = tk.Frame(dTape, bg='purple')
-		dShift.pack(side='top')
+		dShift = tk.Frame(dTape)
+		dShift.pack(side='top', pady=(0, 20))
 
 		bShiftLeft = tk.Button(dShift, text='<', width=3, command=lambda: self.shiftTape(-1))
 		bShiftLeft.pack(side='left')
 		bShiftRight = tk.Button(dShift, text='>', width=3, command=lambda: self.shiftTape(1))
 		bShiftRight.pack(side='right')
 
-		dAccess = tk.Frame(dTape, bg='lime')
+		dAccess = tk.Frame(dTape)
 		dAccess.pack(side='top', fill='x')
 
-		dGoto = tk.Frame(dAccess, bg='salmon')
+		dGoto = tk.Frame(dAccess)
 		dGoto.pack(side='left')
 
 		lGoto = tk.Label(dGoto, text='Jump To:')
 		lGoto.pack(side='left')
 		w['eGoto'] = eGoto = tk.Entry(dGoto, width=5)
-		eGoto.pack(side='left')
+		eGoto.pack(side='left', padx=(0, 5))
 		eGoto.bind('<Return>', self.goto)
 		bGoto = tk.Button(dGoto, text='Jump', command=self.goto)
 		bGoto.pack(side='left')
@@ -198,10 +201,10 @@ class Application(ttk.Notebook):
 		bReset = tk.Button(dAccess, text='Reset', fg='red', command=lambda: self.resetTape(True))
 		bReset.pack(side='right')
 
-		dInput = tk.Frame(tab, bg='aqua')
+		dInput = tk.Frame(tab)
 		dInput.pack(side='top', fill='x')
 
-		dStart = tk.Frame(dInput, bg='teal')
+		dStart = tk.Frame(dInput)
 		dStart.pack(side='left')
 
 		lStart = tk.Label(dStart, text='Start Position:')
@@ -209,7 +212,7 @@ class Application(ttk.Notebook):
 		w['eStartPosition'] = eStart = tk.Entry(dStart, width=5)
 		eStart.pack(side='left')
 
-		dBlank = tk.Frame(dInput, bg='teal')
+		dBlank = tk.Frame(dInput)
 		dBlank.pack(side='left')
 
 		lBlank = tk.Label(dBlank, text='Blank Character:')
@@ -222,66 +225,67 @@ class Application(ttk.Notebook):
 	def executeTabWidgets(self, tab):
 		w = self.widgets
 
-		dMain = tk.Frame(tab, bg='red')
+		dMain = tk.Frame(tab)
 		dMain.pack(side='top', expand=True)
 
-		dSizing = tk.Frame(dMain, bg='blue')
+		dSizing = tk.Frame(dMain)
 		dSizing.pack(side='top', pady=(10, 5))
 
-		dDim = tk.Frame(dSizing, bg='green', borderwidth=1, relief='groove')
+		dDim = tk.Frame(dSizing, borderwidth=1, relief='groove')
 		dDim.pack(side='left', padx=(0, 40))
 
 		lWidth = tk.Label(dDim, text='Width:')
 		lWidth.pack(side='left')
-		w['eWidth'] = eWidth = tk.Entry(dDim, width=5)
+		w['eWidth'] = eWidth = tk.Entry(dDim, takefocus=False, width=5)
 		eWidth.pack(side='left')
 		eWidth.bind('<Return>', self.execute)
 		eWidth.insert(0, '700')
 		lHeight = tk.Label(dDim, text='Height:')
 		lHeight.pack(side='left')
-		w['eHeight'] = eHeight = tk.Entry(dDim, width=5)
+		w['eHeight'] = eHeight = tk.Entry(dDim, takefocus=False, width=5)
 		eHeight.pack(side='left')
 		eHeight.insert(0, '600')
 		eHeight.bind('<Return>', self.execute)
 
-		dCellSize = tk.Frame(dSizing, bg='orange')
+		dCellSize = tk.Frame(dSizing)
 		dCellSize.pack(side='left')
 
 		lCellSize = tk.Label(dCellSize, text='Cell Size:')
 		lCellSize.pack(side='left')
-		w['eCellSize'] = eCellSize = tk.Entry(dCellSize, width=4)
+		w['eCellSize'] = eCellSize = tk.Entry(dCellSize, takefocus=False, width=4)
 		eCellSize.pack(side='left')
 		eCellSize.insert(0, '50')
 		eCellSize.bind('<Return>', self.execute)
 
-		dPacing = tk.Frame(dMain, bg='blue')
+		dPacing = tk.Frame(dMain)
 		dPacing.pack(side='top', pady=(5, 10))
 
-		dSpeed = tk.Frame(dPacing, bg='green')
+		dSpeed = tk.Frame(dPacing)
 		dSpeed.pack(side='left', padx=(0, 10))
 
 		lSpeed = tk.Label(dSpeed, text='Speed:')
 		lSpeed.pack(side='left')
-		w['eSpeed'] = eSpeed = tk.Entry(dSpeed, width=4)
+		w['eSpeed'] = eSpeed = tk.Entry(dSpeed, takefocus=False, width=4)
 		eSpeed.pack(side='left')
 		eSpeed.insert(0, '1')
 		eSpeed.bind('<Return>', self.execute)
 
-		dFPS = tk.Frame(dPacing, bg='orange')
+		dFPS = tk.Frame(dPacing)
 		dFPS.pack(side='left')
 
 		lFPS = tk.Label(dFPS, text='FPS:')
 		lFPS.pack(side='left')
-		w['eFPS'] = eFPS = tk.Entry(dFPS, width=5)
+		w['eFPS'] = eFPS = tk.Entry(dFPS, takefocus=False, width=5)
 		eFPS.pack(side='left')
 		eFPS.insert(0, '100')
 		eFPS.bind('<Return>', self.execute)
 
-		bReset = tk.Button(dMain, text='Restore Defaults', command=self.restoreDefaultSettings)
+		bReset = tk.Button(dMain, text='Restore Defaults', takefocus=False, command=self.restoreDefaultSettings)
 		bReset.pack(side='top', pady=10)
 
 		bExecute = tk.Button(dMain, text='Execute', font=self.fonts['large'], command=self.execute)
 		bExecute.pack(side='top', fill='x', pady=30)
+		bExecute.bind('<Return>', self.execute)
 
 	def generateTapeWidgets(self):
 		t = self.tape
@@ -299,10 +303,10 @@ class Application(ttk.Notebook):
 
 		for i in range(-sideCells, sideCells+1):
 			pos = self.tapePos + i
-			cellFrame = tk.Frame(frame, bg='gray')
+			cellFrame = tk.Frame(frame)
 			cellFrame.pack(side='left', expand=True)
 
-			cell = tk.Entry(cellFrame, justify='center', width=10)
+			cell = tk.Entry(cellFrame, justify='center', width=5)
 			cell.pack(side='top', expand=True)
 
 			if str(pos) in t.keys():
@@ -349,7 +353,7 @@ class Application(ttk.Notebook):
 			data = ('', '', '', '', '')
 
 		frame = w['cdInstruction']
-		dRow = tk.Frame(frame, bg='blue')
+		dRow = tk.Frame(frame)
 		dRow.pack(side='top')
 
 		lID = tk.Label(dRow, width=2)
@@ -429,7 +433,7 @@ class Application(ttk.Notebook):
 			data = ''
 
 		frame = w['cdAccept']
-		dRow = tk.Frame(frame, bg='blue')
+		dRow = tk.Frame(frame)
 		dRow.pack(side='top')
 
 		lID = tk.Label(dRow, width=2)
@@ -497,6 +501,8 @@ class Application(ttk.Notebook):
 
 		self.tape = {}
 		self.tapePos = 0
+		setEntry(w['eStartPosition'], '')
+		setEntry(w['eBlank'], '')
 		self.generateTapeWidgets()
 
 		setEntry(w['eGoto'], '')
@@ -584,7 +590,11 @@ class Application(ttk.Notebook):
 			self.tape = tape
 			setEntry(w['eStartPosition'], startPos)
 			setEntry(w['eBlank'], blankChar)
-			self.tapePos = int(startPos)
+
+			if isInt(startPos):
+				self.tapePos = int(startPos)
+			else:
+				self.tapePos = 0
 
 			self.generateTapeWidgets()
 
@@ -703,12 +713,18 @@ class Application(ttk.Notebook):
 			messagebox.showwarning('Invalid Configuration', 'Width must be a positive integer.')
 			return
 		width = int(width)
+		if width > 2000:
+			messagebox.showwarning('Invalid Configuration', 'Width is too large (maximum is 2000).')
+			return
 
 		height = w['eHeight'].get()
 		if not isInt(height, False, False):
 			messagebox.showwarning('Invalid Configuration', 'Height must be a positive integer.')
 			return
 		height = int(height)
+		if height > 2000:
+			messagebox.showwarning('Invalid Configuration', 'Height is too large (maximum is 2000).')
+			return
 
 		cellSize = w['eCellSize'].get()
 		if not isInt(cellSize, False, False):
@@ -778,7 +794,7 @@ def checkAcceptStates(acceptStates):
 
 root = tk.Tk()
 root.title('Turing Machine')
-root.geometry('800x600')
+root.geometry('550x320')
 app = Application(master=root)
 
 app.mainloop()
