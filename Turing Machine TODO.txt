@@ -1,15 +1,11 @@
 === TODO ===
 @ TuringSim
-- Read animation & function indicator/table
-- Stop auto-run?
 
 @ TuringTkinter
 - Scroll when on frame & scrolling bug
-- Strip strings before validation?
-- Thread pygame?
 
 @ Finalisation
-> Remove test run line
+> Remove test run line in TuringSim
 > Comment all code
 
 ===== TOOLS =====

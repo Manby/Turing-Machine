@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk, filedialog, messagebox
 import json
-import TuringSim
+import simulator
 import re
 
 class Application(ttk.Notebook):
@@ -239,7 +239,7 @@ class Application(ttk.Notebook):
 		w['eWidth'] = eWidth = tk.Entry(dDim, takefocus=False, width=5)
 		eWidth.pack(side='left')
 		eWidth.bind('<Return>', self.execute)
-		eWidth.insert(0, '700')
+		eWidth.insert(0, '800')
 		lHeight = tk.Label(dDim, text='Height:')
 		lHeight.pack(side='left')
 		w['eHeight'] = eHeight = tk.Entry(dDim, takefocus=False, width=5)
@@ -539,7 +539,7 @@ class Application(ttk.Notebook):
 		w = self.widgets
 
 		if messagebox.askyesno('Restore Defaults', 'Restore default simulation settings?'):
-			setEntry(w['eWidth'], '700')
+			setEntry(w['eWidth'], '800')
 			setEntry(w['eHeight'], '600')
 			setEntry(w['eCellSize'], '50')
 			setEntry(w['eSpeed'], '1')
@@ -744,7 +744,7 @@ class Application(ttk.Notebook):
 			return
 		FPS = int(FPS)
 
-		TuringSim.run(instructions, acceptStates, startState, tape, startPos, blankChar, (width, height), cellSize, speed, FPS)
+		simulator.run(instructions, acceptStates, startState, tape, startPos, blankChar, (width, height), cellSize, speed, FPS)
 
 def tagUp(tag, *args):
 	for widget in args:
