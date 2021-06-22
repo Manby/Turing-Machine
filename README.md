@@ -48,7 +48,7 @@ Symbol | Meaning
 
 #### When the machine is running:
 * P:        Pause animation
-* Esc:      Stop machine
+* Esc:      Interrupt machine (bringing it back to standby)
 
 #### When the machine is paused:
 * P:        Unpause animation
