@@ -1,7 +1,7 @@
 # Turing-Machine
 
 ## Requirements
-The additional python module that is used is pygame, which can be installed with the command
+The only additional python module that is used is pygame, which can be installed with the command
 `python -m pip install pygame`
 
 ## Editor
