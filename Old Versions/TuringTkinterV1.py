@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 import json
-import TuringSim
+import simulator
 import re
 
 class Application(ttk.Notebook):

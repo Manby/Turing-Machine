@@ -1,8 +1,10 @@
 === TODO ===
 @ TuringSim
+- Step Counter
 
 @ TuringTkinter
 - Scroll when on frame & scrolling bug
+- Cell Size Cap
 
 @ Finalisation
 > Remove test run line in TuringSim
