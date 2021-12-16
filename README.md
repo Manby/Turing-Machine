@@ -31,12 +31,12 @@ The read-write head will turn **red** if it is in a situation with no defined tr
 The read-write head will turn **green** if it reaches an accept state.
 
 The **status** of the machine is indicated by the symbol at the top-left of the window:
-Symbol | Meaning
--- | --
-… | Standby
-► | Running
-❚❚ | Paused
-■ | Stopped
+| Symbol | Meaning |
+| -- | -- |
+| … | Standby |
+| ► | Running |
+| ❚❚ | Paused |
+| ■ | Stopped |
 
 
 ### Controls
