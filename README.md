@@ -2,7 +2,7 @@
 
 ## Requirements
 The only additional python module that is used is pygame, which can be installed with the command
-`python -m pip install pygame`
+`python -m pip install -r requirements.txt`
 
 ## Editor
 
